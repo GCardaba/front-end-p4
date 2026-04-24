@@ -1,45 +1,54 @@
 export type User = {
-  id: string;
+  _id: string;
   name: string;
   username: string;
-  profile_image_url: string;
+  seguidores: [ {
+        _id: string;
+        username: string;}
+    ];
+    siguiendo: [{
+        _id: string;
+        username: string;}
+    ];
+
+    createdAt: Date;
+    updatedAt: Date;
+    __v: number;
 };
+
+export type Comentario = {
+    _id: string;
+    contenido: string;
+    autor: {
+        _id: string;
+        username: string;
+    };
+    fecha: Date;
+
+}
+
+export type Post = {
+  _id: string;
+  contenido: string;
+  autor: {
+    _id: string;
+    username: string
+  };
+  likes: [string];
+  retweets: [
+    {
+      usuario: string;
+      fecha: Date;
+    }
+  ];
+  comentarios: Comentario[];
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
+
 
 export type UserResponse = { 
-    "_id": "string",
-    "username": "string",
-    "email": "string",
-  "posts": [
-    {
-      "_id": "string",
-      "contenido": "string",
-      "autor": {
-        "_id": "string",
-        "username": "string"
-      },
-      "likes": [
-        "string"
-      ],
-      "retweets": [
-        {
-          "usuario": "string",
-        }
-      ],
-      "comentarios": [
-        {
-          "_id": "string",
-          "contenido": "string",
-          "autor": {
-            "_id": "string",
-            "username": "string"
-          },
-        }
-      ],
-      "createdAt": "2026-04-24T14:27:42.632Z",
-      "updatedAt": "2026-04-24T14:27:42.632Z"
-    }
-  ]
-
+  user: User;
+  posts: Post[];
 };
-
-/* /api/users/{id}/profile */
